@@ -314,25 +314,16 @@ const PIANO_TEMPLATE_XML = `<?xml version="1.0" encoding="UTF-8"?>
 <score-partwise version="3.1"
   xmlns="http://www.musicxml.org/ns/musicxml">
   <part-list>
+    <part-group type="start" number="1">
+      <group-symbol>brace</group-symbol>
+      <group-barline>yes</group-barline>
+    </part-group>
     <score-part id="P1">
       <part-name>Piano</part-name>
     </score-part>
+    <part-group type="stop" number="1"/>
   </part-list>
   <part id="P1">
-    <measure number="0">
-      <attributes>
-        <divisions>4</divisions>
-      </attributes>
-      <direction placement="above">
-        <direction-type>
-          <metronome>
-            <beat-unit>quarter</beat-unit>
-            <per-minute>{{TEMPO}}</per-minute>
-          </metronome>
-        </direction-type>
-      </direction>
-    </measure>
-
     <measure number="1">
       <attributes>
         <divisions>4</divisions>
@@ -342,22 +333,46 @@ const PIANO_TEMPLATE_XML = `<?xml version="1.0" encoding="UTF-8"?>
         <clef number="1"><sign>G</sign><line>2</line></clef>
         <clef number="2"><sign>F</sign><line>4</line></clef>
       </attributes>
+      <direction placement="above">
+        <direction-type>
+          <metronome>
+            <beat-unit>quarter</beat-unit>
+            <per-minute>{{TEMPO}}</per-minute>
+          </metronome>
+        </direction-type>
+      </direction>
       {{T_M1_B1}}{{T_M1_B2}}{{T_M1_B3}}{{T_M1_B4}}
+      <backup><duration>16</duration></backup>
       {{B_M1_GROUP}}
     </measure>
 
     <measure number="2">
+      <attributes>
+        <divisions>4</divisions>
+        <staves>2</staves>
+      </attributes>
       {{T_M2_B1}}{{T_M2_B2}}{{T_M2_B3}}{{T_M2_B4}}
+      <backup><duration>16</duration></backup>
       {{B_M2_GROUP}}
     </measure>
 
     <measure number="3">
+      <attributes>
+        <divisions>4</divisions>
+        <staves>2</staves>
+      </attributes>
       {{T_M3_B1}}{{T_M3_B2}}{{T_M3_B3}}{{T_M3_B4}}
+      <backup><duration>16</duration></backup>
       {{B_M3_GROUP}}
     </measure>
 
     <measure number="4">
+      <attributes>
+        <divisions>4</divisions>
+        <staves>2</staves>
+      </attributes>
       {{T_M4_B1}}{{T_M4_B2}}{{T_M4_B3}}{{T_M4_B4}}
+      <backup><duration>16</duration></backup>
       {{B_M4_GROUP}}
     </measure>
   </part>
@@ -428,7 +443,7 @@ function buildMusicXmlFromPhrase(): string {
           <note>
             <rest/>
             <duration>${divisions / 2}</duration>
-            <voice>1</voice>
+            <voice>2</voice>
             <type>eighth</type>
             <staff>2</staff>
           </note>`
@@ -457,7 +472,7 @@ function buildMusicXmlFromPhrase(): string {
             <octave>${octave}</octave>
           </pitch>
           <duration>${divisions / 2}</duration>
-          <voice>1</voice>
+          <voice>2</voice>
           <type>eighth</type>
           ${beamTag}
           <staff>2</staff>
