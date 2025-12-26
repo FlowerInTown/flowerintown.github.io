@@ -1,9 +1,12 @@
 <template>
   <div class="app">
-    <h1>音乐练习工具</h1>
-    <p>Vue + GitHub Pages</p>
+    <PracticePiano />
   </div>
 </template>
+
+<script setup lang="ts">
+import PracticePiano from './components/PracticePiano.vue'
+</script>
 
 <style>
 .app {
